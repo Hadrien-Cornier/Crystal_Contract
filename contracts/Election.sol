@@ -45,6 +45,12 @@ contract Election {
     //default public function to read this
     mapping(uint => Candidate) public candidates;
     //store candidates Count, useful for loops
+
+    //store accounts that have voted
+    //address is its own type !
+    //by default a bool is False
+    mapping(address => bool) public voters;
+
     uint public candidatesCount;
     //add a candidate ?
     //_ because local variable
@@ -58,6 +64,28 @@ contract Election {
     constructor() public {
         addCandidate('Candidate1');
         addCandidate('Candidate2');
+    }
+    event votedEvent (
+    //indexes candidateid that was passed
+    uint indexed _candidateid
+    );
+    function vote(uint _candidateid) public {
+      //adress has not voted before
+      require(!voters[msg.sender]);
+      //it is a valid candidate
+      require(_candidateid > 0 && _candidateid <= candidatesCount);
+
+      //record that the voter has voted
+      //how ?
+      //solidity allows us to use metadata to know WHO has called this function
+      //the syntax is msg.sender
+      voters[msg.sender] = true;
+
+      //update votecount for the candidate
+      candidates[_candidateid].voteCount ++;
+
+      //trigger event
+      emit votedEvent(_candidateid);
     }
 
 //NOTE :
