@@ -1,4 +1,13 @@
 pragma solidity 0.5.12;
+//IMPORTANT NOTE, COMPATIBILITY : 1) In solidity 0.5 we can now do
+//var candidat= app.candidates(1)
+//without using  a javascript promise
+//see 42:00 in the video (which is a tutorial for 0.4)
+//also, 2) we need to specifiy in function calls an argument
+//"storage" or "memory" which means DISK or RAM
+//also 3) we need to call constructor() public {} instead of Election() public {}
+
+
 //in the truffle console,
 //Election.deployed() is a javascript promise
 //handles eventual result of an asynchonous operation
@@ -15,6 +24,11 @@ contract Election {
     //How big numbers appear in javascript : (prevents overflow)
     //BN { negative: 0, words: [ 2, <1 empty item> ], length: 1, red: null }
     struct Candidate {
+      //Problem : unlike whatever goes on outside a struct
+      //where we automatically inherit a get function
+      //inside a struct there is no such thing,
+      //therefore in the truffle console we will
+      //not be able to access a candidate's id by writing candiateobject.id
       uint id;
       string name;
       uint voteCount;
@@ -46,6 +60,7 @@ contract Election {
         addCandidate('Candidate2');
     }
 
-
+//NOTE :
+//in solidity
 
 }
