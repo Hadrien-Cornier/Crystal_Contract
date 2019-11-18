@@ -2,9 +2,9 @@
 
 #TO-DO
 
--How to create a list ? Do we need to use "mapping" + Count of employees ?
+-How to create a list ? Do we need to use "mapping" + Count of employees ? adress[];
 
--How to use a Date type and automatically terminate a contract after that date ?
+-How to use a Date type and automatically terminate a contract after that date ? uint256 public birthdate;
 
 -Who is allowed to add/terminate contracts ? Is there a "require' condition that we can set ?
 
