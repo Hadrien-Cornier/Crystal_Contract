@@ -1,5 +1,15 @@
 # Blockchain_project2
 
+#TO-DO
+
+How to create a list ? Do we need to use "mapping" + Count of employees ?
+How to use a Date type and automatically terminate a contract after that date ?
+Who is allowed to add/terminate contracts ? Is there a "require' condition that we can set ?
+Is a user of the contract (msg.sender) allowed to do smth ?
+How to we get 2 users to agree to run a function ??
+How to manage joint ownership of objects created with the solidity contract ? (it's easy to put 2 adresses in the contructor. But how to check if the owners of the two adresses called the function at the same time ?? Double private key signature or smth.)
+we want to know how to make an information (example : salary) owned by only 2 users .
+
 # The Problem
 
 There are over over 2.5 million foriegn domestic workers in the Gulf countries. A majority of these workers arrive to these countries in hopes of improving the lives of their family but end up working primarily in the construction and hospitality industry. However, not everything goes as planned. Check out the following facts:
