@@ -9,4 +9,8 @@ contract InterfaceEmployeeStorage {
     function getAddress(uint256 _id) public view returns(address);
     function getLatestContract(address _address) public view returns (uint256);
     function remove(address _address) public;
+    function getpassport_number(uint256 _id) public returns(string);
+//    function getEmployee(address _address) public returns() Hoe to return struct in interface
+}
+
 }
