@@ -1,6 +1,8 @@
 # Crystal Contract : Decentralized Job and Reports Records for Migrant Workers in the Middle East
 
-Alaukik, Andrew, Feifan, Hadrien
+Alaukik Pant, Andrew Lee Mangeni, Feifan Yan, Hadrien Cornier
+
+Project done for the "COMSW 4995 Blockchain and Applications" course given in Fall 2019 at Columbia University by [Eran Tromer](https://www.tau.ac.il/~tromer/) and Alexandros Biliris
 
 # The Problem:
 
