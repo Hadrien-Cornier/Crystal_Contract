@@ -5,8 +5,14 @@ import "./InterfaceMediatorStorage.sol";
 import "./Ownable.sol";
 
 
+<<<<<<< Updated upstream
 contract MediatorStorage is InterfaceMediatorStorage, Ownable {
 
+=======
+
+contract MediatorStorage is InterfaceMediatorStorage, Ownable {
+    
+>>>>>>> Stashed changes
 
     /*
      *  Storage
@@ -18,12 +24,30 @@ contract MediatorStorage is InterfaceMediatorStorage, Ownable {
         address accountAddress;
     }
 
+<<<<<<< Updated upstream
     uint256 nextMediatorId = 1;
     uint256 MediatorCount = 0;
 
     mapping (uint256 => Mediator) companiesById;
     mapping (address => uint256) companiesByAddress;
 
+=======
+
+    uint256 nextMediatorId;
+    uint256 MediatorCount;
+    
+
+    mapping (uint256 => Mediator) mediatorsById;
+    mapping (address => uint256) mediatorsByAddress;
+
+
+
+     constructor () public {
+            nextMediatorId = 1;
+            MediatorCount = 0;
+    }
+    
+>>>>>>> Stashed changes
     /*
      *  Modifiers
      */
@@ -33,7 +57,11 @@ contract MediatorStorage is InterfaceMediatorStorage, Ownable {
     }
 
     modifier existingMediatorId(uint256 _id) {
+<<<<<<< Updated upstream
         require(companiesById[_id].exists);
+=======
+        require(mediatorsById[_id].exists);
+>>>>>>> Stashed changes
         _;
     }
 
@@ -45,6 +73,7 @@ contract MediatorStorage is InterfaceMediatorStorage, Ownable {
     /*
      * Public functions
      */
+<<<<<<< Updated upstream
 
 
      // Everyone with a single adress in the blockchain should be able to own only 1 adress in the blockchain
@@ -59,13 +88,37 @@ contract MediatorStorage is InterfaceMediatorStorage, Ownable {
         companiesById[nextMediatorId].name = name;
         companiesById[nextMediatorId].accountAddress = msg.sender;
         companiesByAddress[msg.sender] = nextMediatorId;
+=======
+     
+     
+     // Everyone with a single adress in the blockchain should be able to own only 1 adress in the blockchain
+     // You also do not want someone else creating an adress for your adress
+     
+
+     
+     
+    function addMediator(string name, address _address) 
+        public
+        
+        notExistingMediatorAddress(_address)
+    {
+        mediatorsById[nextMediatorId].exists = true;
+        mediatorsById[nextMediatorId].id = nextMediatorId;
+        mediatorsById[nextMediatorId].name = name;
+        mediatorsById[nextMediatorId].accountAddress = _address;
+        mediatorsByAddress[_address] = nextMediatorId;
+>>>>>>> Stashed changes
         MediatorCount++;
         nextMediatorId++;
     }
 
 
 
+<<<<<<< Updated upstream
 
+=======
+ 
+>>>>>>> Stashed changes
 
     // Returns Mediator count from all of history
     function getCount()
@@ -75,11 +128,23 @@ contract MediatorStorage is InterfaceMediatorStorage, Ownable {
     {
         return MediatorCount;
     }
+<<<<<<< Updated upstream
 
     /// @dev gets the Mediator ID.
     /// @param _address Address of existing Mediator.
     /// @return Returns Mediator ID.
     function getId(address _address)
+=======
+ 
+    /// @dev gets the Mediator ID.
+    /// @param _address Address of existing Mediator.
+    /// @return Returns Mediator ID.
+    
+    
+    
+    
+    function getMediatorId(address _address)
+>>>>>>> Stashed changes
         public
         existingMediatorAddress(_address)
         view
@@ -91,13 +156,21 @@ contract MediatorStorage is InterfaceMediatorStorage, Ownable {
     /// @dev gets the total Mediator address from ID.
     /// @param _id ID of existing Mediator.
     /// @return Returns Mediator address.
+<<<<<<< Updated upstream
     function getAddress(uint256 _id)
+=======
+    function getMediatorAddress(uint256 _id)
+>>>>>>> Stashed changes
         public
         existingMediatorId(_id)
         view
         returns (address)
     {
+<<<<<<< Updated upstream
         return companiesById[_id].accountAddress;
+=======
+        return mediatorsById[_id].accountAddress;
+>>>>>>> Stashed changes
     }
 
 
@@ -105,6 +178,7 @@ contract MediatorStorage is InterfaceMediatorStorage, Ownable {
 
     /// @dev removes and Mediator.
     /// @param _address Address of existing Mediator.
+<<<<<<< Updated upstream
     function remove(address _address)
         public
         onlyOwner
@@ -112,11 +186,30 @@ contract MediatorStorage is InterfaceMediatorStorage, Ownable {
     {
         Mediator memory mediator = getMediator(_address);
 
+=======
+    function removeMediator(address _address)
+        public
+        onlyOwner  
+        existingMediatorAddress(_address)
+    {
+        Mediator memory mediator = getMediator(_address);
+        
+>>>>>>> Stashed changes
         delete mediator.exists;
         delete mediator.id;
         delete mediator.accountAddress;
         MediatorCount--; //number of active Mediators
     }
+<<<<<<< Updated upstream
+=======
+    
+    function isMediator(address _address) 
+    public
+    existingMediatorAddress(_address)
+    returns (bool) {
+        return getMediator(_address).exists;
+    }
+>>>>>>> Stashed changes
 
     /*
     * Internal functions
@@ -127,8 +220,22 @@ contract MediatorStorage is InterfaceMediatorStorage, Ownable {
         view
         returns (Mediator)
     {
+<<<<<<< Updated upstream
         uint256 MediatorId = companiesByAddress[_address];
         return companiesById[MediatorId];
+=======
+        uint256 MediatorId = mediatorsByAddress[_address];
+        return mediatorsById[MediatorId];
+    }
+    
+    function getMediatorName(uint256 _id) 
+    public 
+    view
+    returns(string)
+    {
+        return mediatorsById[_id].name;
+        
+>>>>>>> Stashed changes
     }
 
 }
