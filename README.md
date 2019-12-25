@@ -2,7 +2,7 @@
 
 Alaukik, Andrew, Feifan, Hadrien
 
-#1.  The Problem:
+# The Problem:
 
 There are over 2.5 million foreign domestic workers in Gulf countries hailing from South Asia, Southeast Asia and Africa. Most of the demand for foriegn workers is in the construction and service industry.  A majority of these workers arrive in hopes of improving the lives of their family and their own. But they face several severe problems. Reports from Amnesty International and the Gulf Research Center provide an in depth case study of the problems that migrant workers face. Crystal Contract aims to deal with the following problems:
 
@@ -10,13 +10,14 @@ The workers do not necessarily get the job, salary and working hours that they a
 Recruitment agencies do not take responsibility of the reputation of the companies they are hiring for. Although against the law, their only aim is to send as many workers abroad as possible without caring too much about the working conditions and financial stability of the recruiting company. 
 There is no way for workers to report modern day slavery connditons remotely. The passports of low-paid migrant workers  are often confiscated in countries such as Saudi Arabia and it is hard for a worker to remotely lodge a complaint due to the fear of the employer.
 Many people become victims of illegal human trafficking. Some recruiting agencies work as a medium for human traffickers to traffick people by posing as companies. Airport officials often have a difficult time screening these false papers. 
-2. CrystalContract: Work contracts for the most vulnerable on the blockchain
+
+# CrystalContract: Work contracts for the most vulnerable on the blockchain
 
 CrystalContract is a DApp that runs on top of the Ethereum network. The purpose of CrystalContract is simple. We help employers and employees sign job contracts on the blockchain. Our target audience is primarily composed of construction and hospitality companies in the Gulf region and the low-skilled migrant workers they hire.
 
 Contracts signed using CrystalContract legally require both parties to act in good faith just like a traditional job contract. Crystalcontract is different because it is in the blockchain and cannot be changed, deleted or intransparent. We will get to the benefits of using blockchain later.
 
-#Here is how it works:
+# Here is how it works:
 
 Registered companies seeking to hire workers from abroad are able to request access to our network. (permissioned)
 Workers seeking to go abroad can also join the network at the cost of a small gas fee g.
@@ -25,7 +26,7 @@ Workers and companies can sign a work contract on the network. The contract is c
 Workers that signed a contract with the company at some point can register complaints about the company. Others who have signed a contract with the same company can also show support by signing the report digitally..
 
 
-#The problems it solves:
+# The problems it solves:
 
 i) It helps a third parties such as airport officials monitor human trafficking by checking weather there is a contract between the comapany and the employee. 
 ii) A third party such as the government can remotely monitor if all contracts guarantee at least minimum wage to the workers.
@@ -73,19 +74,22 @@ A first technical limitation can arise based on the fact that employees, employe
 
 Another limitation is the fact that all information contained in an Ethereum smart contract, even using the private keyword, is fully visible inside the block. Using the private keyword makes it more difficult to access but it is not cryptographically protected. This means that right now the implementation that we have done makes an employee's signatures visible to the company that he is reporting, which is a problem.
 
-How to make the signatures of a report anonymous ?
+## How to make the signatures of a report anonymous ?
 
 There are 2 safe options to do so as of now.
  The first one would be to rely on a trusted third party to validate transactions and to check when X wants to sign report R, that X has not already signed R before, as well as incrementing RS, the public number of signatures of R. This could be done by calling an ‘oracle’ that could for instance store a hashed “signature dictionary” DR onto the blockchain such that DR[X]=True if X has signed R. No one would be able to read that dictionary but the trusted third party, and the storage capacity of the miners would be used.
 The second option would be to use cryptography. In our case the only information that we want to keep hidden is the sender of a signature on a report. It would not serve to hide the report itself since the number of signatures of every report is public and therefore one could easily reverse engineer which report has been signed. Also it would not serve to hide the amount of signatures that one sends, because it can only be 1. I will show that this problem is isomorphic to the Monero implementation and therefore can be solved with publicly available technology.
 
-Let us consider the public information P (Employees, Company, Mediators, Reports, Number of signatures for each report),  a new report R, a signatory A that belongs to the Employees.
-Employee A wants to sign R but remain anonymous
-Employee A should be prevented to sign R twice
+Let us consider : 
+-the public information P (Employees, Company, Mediators, Reports, Number of signatures for each report),  
+-a new report R,
+-a signatory A that belongs to the Employees.
+-Employee A wants to sign R but remain anonymous
+-Employee A should be prevented to sign R twice
 	
-	R contains public information on the Company CR that it is about, and the number of signatures it received.Every Employee E has public information of his past contracts CE and, and their respective Companies.
-	For the new report R, let us create a “Monero” token (we will explain later what this means) at the same time as the creation of the report such that : A new wallet is created for the report itself containing 0 tokens. Every Employee E that has had at least one past contract with CR is awarded 1 signature token, and every other employee is awarded 0 signature tokens. During the course of time, while the report is not marked as solved, at each new contract that is registered on the blockchain, if that contract is between CR and an Employee that did not receive a signature token before, that employee receives a new signature token.
-	The signature operation is isomorphic to a Monero transaction where the sender sends 1 token to sign the contract.This operation can be both verified (ie no employee signed more than his number of signature tokens) and anonymous [6] (ie the identity of the signatory is hidden) by the monero usage of stealth addresses (which hides the sender) and verification of transaction validity (which prevents anyone from signing more than once). Therefore it would be feasible in the future to make every report’s signatories anonymous, even if it is not the case right now.
+R contains public information on the Company CR that it is about, and the number of signatures it received. Every Employee E has public information of his past contracts CE and, and their respective Companies.
+For the new report R, let us create a “Monero” token (we will explain later what this means) at the same time as the creation of the report such that : A new wallet is created for the report itself containing 0 tokens. Every Employee E that has had at least one past contract with CR is awarded 1 signature token, and every other employee is awarded 0 signature tokens. During the course of time, while the report is not marked as solved, at each new contract that is registered on the blockchain, if that contract is between CR and an Employee that did not receive a signature token before, that employee receives a new signature token.
+The signature operation is isomorphic to a Monero transaction where the sender sends 1 token to sign the contract.This operation can be both verified (ie no employee signed more than his number of signature tokens) and anonymous [6] (ie the identity of the signatory is hidden) by the monero usage of stealth addresses (which hides the sender) and verification of transaction validity (which prevents anyone from signing more than once). Therefore it would be feasible in the future to make every report’s signatories anonymous, even if it is not the case right now.
 
 ### Economic
 
