@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "truffle": "^5.0.44"
+    "truffle": "^5.8.4"
   },
   "devDependencies": {}
 }
